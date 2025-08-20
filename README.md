@@ -17,8 +17,6 @@ npx playwright install
 
 ## Test Environment
 - **URL**: https://cac-q2-plto-ui-app-01.azurewebsites.net/
-- **Email**: qatest20250815101@plooto-admin-test.ca
-- **Password**: oET5g^nme@%2rzS!DEF@trW!
 
 ## Run Tests
 
