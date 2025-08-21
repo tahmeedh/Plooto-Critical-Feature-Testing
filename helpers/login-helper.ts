@@ -31,5 +31,9 @@ export class LoginHelper {
     return this.loginPage.landingPageIndicator;
   }
 
+  get page(): Page {
+    return this.loginPage.page;
+  }
+
 
 }
