@@ -2,16 +2,19 @@ import { Page, expect } from '@playwright/test';
 import { LoginHelper } from './login-helper';
 import { NavigationHelper } from './navigation-helper';
 import { SettingsHelper } from './settings-helper';
+import { UserManagementHelper } from './client-management/user-management-helper';
 
 export class TestBase {
   readonly loginHelper: LoginHelper;
   readonly navigationHelper: NavigationHelper;
   readonly settingsHelper: SettingsHelper;
+  readonly userManagementHelper: UserManagementHelper;
 
   constructor(page: Page) {
     this.loginHelper = new LoginHelper(page);
     this.navigationHelper = new NavigationHelper(page);
     this.settingsHelper = new SettingsHelper(page);
+    this.userManagementHelper = new UserManagementHelper(page);
   }
 
   // Convenience methods for common workflows

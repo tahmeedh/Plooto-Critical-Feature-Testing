@@ -96,33 +96,4 @@ export class SettingsHelper {
     await expect(this.settingsPage.userManagementLink).toBeVisible();
   }
 
-  // Generic assertion method
-  async expectSettingsPageVisible(settingsPage: string): Promise<void> {
-    switch (settingsPage.toLowerCase()) {
-      case 'single sign-on':
-        await this.expectSingleSignOnLinkVisible();
-        break;
-      case 'controls':
-        await this.expectControlsLinkVisible();
-        break;
-      case 'billing & subscriptions':
-      case 'billing subscriptions':
-        await this.expectBillingSubscriptionsLinkVisible();
-        break;
-      case 'capture settings':
-        await this.expectCaptureSettingsLinkVisible();
-        break;
-      case 'accounting software':
-        await this.expectAccountingSoftwareLinkVisible();
-        break;
-      case 'payment preferences':
-        await this.expectPaymentPreferencesLinkVisible();
-        break;
-      case 'user management':
-        await this.expectUserManagementLinkVisible();
-        break;
-      default:
-        throw new Error(`Settings page '${settingsPage}' not found for assertion`);
-    }
-  }
 }
