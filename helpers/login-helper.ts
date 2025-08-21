@@ -1,5 +1,5 @@
 import { Page, Locator } from '@playwright/test';
-import { LoginLocators } from '../locators';
+import { LoginPage } from '../locators/login-page';
 
 export class LoginHelper {
   private page: Page;
@@ -12,10 +12,10 @@ export class LoginHelper {
    * Find and fill email input field
    * @returns Promise<boolean> - true if email was filled successfully
    */
-  async fillEmailInput(email: string = LoginLocators.TEST_EMAIL): Promise<boolean> {
+  async fillEmailInput(email: string = LoginPage.TEST_EMAIL): Promise<boolean> {
     console.log("🔍 Looking for email input field...");
     
-    for (const selector of LoginLocators.EMAIL_SELECTORS) {
+    for (const selector of LoginPage.EMAIL_SELECTORS) {
       try {
         const emailInput = this.page.locator(selector).first();
         if (await emailInput.isVisible()) {
@@ -37,10 +37,10 @@ export class LoginHelper {
    * Find and fill password input field
    * @returns Promise<boolean> - true if password was filled successfully
    */
-  async fillPasswordInput(password: string = LoginLocators.TEST_PASSWORD): Promise<boolean> {
+  async fillPasswordInput(password: string = LoginPage.TEST_PASSWORD): Promise<boolean> {
     console.log("🔍 Looking for password input field...");
     
-    for (const selector of LoginLocators.PASSWORD_SELECTORS) {
+    for (const selector of LoginPage.PASSWORD_SELECTORS) {
       try {
         const passwordInput = this.page.locator(selector).first();
         if (await passwordInput.isVisible()) {
@@ -65,7 +65,7 @@ export class LoginHelper {
   async clickLoginButton(): Promise<boolean> {
     console.log("🔍 Looking for login button...");
     
-    for (const selector of LoginLocators.LOGIN_BUTTON_SELECTORS) {
+    for (const selector of LoginPage.LOGIN_BUTTON_SELECTORS) {
       try {
         const loginButton = this.page.locator(selector).first();
         if (await loginButton.isVisible()) {
@@ -94,7 +94,7 @@ export class LoginHelper {
     await this.page.waitForTimeout(3000);
     
     // Check for dashboard indicators
-    for (const indicator of LoginLocators.DASHBOARD_INDICATORS) {
+    for (const indicator of LoginPage.DASHBOARD_INDICATORS) {
       try {
         const element = this.page.locator(indicator);
         if (await element.isVisible()) {
