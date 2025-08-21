@@ -1,5 +1,4 @@
 import { expect, type Locator, type Page } from '@playwright/test';
-import { LoginLocators } from './login-locators';
 import { TestCredentials } from '../config/test-credentials';
 
 export class LoginPage {
@@ -7,7 +6,7 @@ export class LoginPage {
   readonly emailInput: Locator;
   readonly passwordInput: Locator;
   readonly loginButton: Locator;
-  readonly dashboardIndicator: Locator;
+  readonly landingPageIndicator: Locator;
   readonly errorMessage: Locator;
   readonly forgotPasswordLink: Locator;
   readonly rememberMeCheckbox: Locator;
@@ -42,15 +41,15 @@ export class LoginPage {
     '[data-testid*="signin" i]'
   ];
 
-  // Dashboard indicators for successful login
-  static readonly DASHBOARD_INDICATORS = [
-    'text=Dashboard',
-    'text=Welcome',
-    'text=Home',
-    '[data-testid*="dashboard" i]',
-    '.dashboard',
-    '#dashboard'
-  ];
+//   // Dashboard indicators for successful login
+//   static readonly DASHBOARD_INDICATORS = [
+//     'text=Dashboard',
+//     'text=Welcome',
+//     'text=Home',
+//     '[data-testid*="dashboard" i]',
+//     '.dashboard',
+//     '#dashboard'
+//   ];
 
   constructor(page: Page) {
     this.page = page;
@@ -62,10 +61,10 @@ export class LoginPage {
     this.passwordInput = page.locator(LoginPage.PASSWORD_SELECTORS.join(', '));
     
     // Login button using LOGIN_BUTTON_SELECTORS
-    this.loginButton = page.locator(LoginLocators.LOGIN_BUTTON_SELECTORS.join(', '));
+    this.loginButton = page.locator(LoginPage.LOGIN_BUTTON_SELECTORS.join(', '));
     
     // Dashboard indicator using DASHBOARD_INDICATORS
-    this.dashboardIndicator = page.locator(LoginLocators.DASHBOARD_INDICATORS.join(', '));
+    this.landingPageIndicator = page.locator('text=Select your company');
     
     // Error message
     this.errorMessage = page.getByText(/invalid|incorrect|error/i)
@@ -80,25 +79,6 @@ export class LoginPage {
     this.rememberMeCheckbox = page.getByRole('checkbox', { name: /remember me|keep me signed in/i })
       .or(page.getByLabel(/remember me|keep me signed in/i));
   }
-
-  async goto() {
-    await this.page.goto('https://cac-q2-plto-ui-app-01.azurewebsites.net/');
-  }
-
-  async login(email: string, password: string) {
-    await this.emailInput.fill(email);
-    await this.passwordInput.fill(password);
-    await this.loginButton.click();
-  }
-
-  async loginWithTestCredentials() {
-    await this.login(TestCredentials.TEST_EMAIL, TestCredentials.TEST_PASSWORD);
-  }
-
-  async expectToBeLoggedIn() {
-    await expect(this.dashboardIndicator).toBeVisible();
-  }
-
 
 
 }
