@@ -25,6 +25,7 @@ export class TestBase {
   async loginAndNavigate() {
     await this.loginHelper.goto();
     await this.loginHelper.loginWithTestCredentials();
+    await this.page.waitForTimeout(3000);
     await this.loginHelper.expectToBeLoggedIn();
     await this.navigationHelper.clickPlooto();
   }

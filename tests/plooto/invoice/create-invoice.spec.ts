@@ -10,8 +10,9 @@ test.describe('Create Invoice', () => {
   });
 
   test('should create an invoice', async ({ page }) => {
+    await testBase.navigateToSection('capture');
     await testBase.clickAddDocumentButton();
     await testBase.clickDropFilesInput('/Users/tahmeed/Documents/Cursor/Plooto/PlootoQATest/sqinv-Tahmeed-Hossain-6987.pdf');
   });
-  
+
 });
