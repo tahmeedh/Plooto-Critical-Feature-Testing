@@ -40,8 +40,11 @@ export class TestBase {
   }
 
   async clickDropFilesInput(filePath: string) {
+    const fileChooserPromise = this.page.waitForEvent('filechooser');
     await this.testBasePage.dropFilesInput.click();
-    await this.testBasePage.dropFilesInput.fill(filePath);
+    const fileChooser = await fileChooserPromise;
+    await fileChooser.setFiles(filePath);
+
   }
 
   async navigateToSection(section: string) {
