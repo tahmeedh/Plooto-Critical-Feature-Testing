@@ -13,6 +13,11 @@ test.describe('Create Invoice', () => {
     await testBase.navigateToSection('capture');
     await testBase.clickAddDocumentButton();
     await testBase.clickDropFilesInput('/Users/tahmeed/Documents/Cursor/Plooto/PlootoQATest/sqinv-Tahmeed-Hossain-6987.pdf');
+    
+
+    await expect(page.getByTestId('document-upload')).toContainText('Upload Completed');
+    // await expect(page).toHaveScreenshot();
+    await expect(page.getByRole('button', { name: 'Upload Completed 100 Upload' })).toHaveScreenshot();
   });
 
 });
